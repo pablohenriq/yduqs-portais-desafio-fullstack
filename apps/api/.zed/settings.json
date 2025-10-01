@@ -24,5 +24,13 @@
     "JSON": { "formatter": { "language_server": { "name": "biome" } } },
     "JSONC": { "formatter": { "language_server": { "name": "biome" } } },
     "CSS": { "formatter": { "language_server": { "name": "biome" } } }
+  },
+  "lsp": {
+    "biome": {
+      "settings": {
+        "config_path": "./biome.json",
+        "require_config_file": true
+      }
+    }
   }
 }
