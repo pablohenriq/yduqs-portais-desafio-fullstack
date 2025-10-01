@@ -4,6 +4,8 @@
   "packageManager": "pnpm@10.17.1",
   "scripts": {
     "dev": "pnpm run --parallel dev",
+    "dev:infra": "docker compose -f docker-compose.dev.yml up -d",
+    "dev:stop": "docker compose -f docker-compose.dev.yml down",
     "lint": "biome check --write .",
     "format": "biome format --write ."
   },
