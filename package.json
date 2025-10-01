@@ -1,0 +1,13 @@
+{
+  "name": "@yduqs-portais-desafio-fullstack/root",
+  "private": "true",
+  "packageManager": "pnpm@10.17.1",
+  "scripts": {
+    "dev": "pnpm run --parallel dev",
+    "lint": "biome check --write .",
+    "format": "biome format --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.4"
+  }
+}
