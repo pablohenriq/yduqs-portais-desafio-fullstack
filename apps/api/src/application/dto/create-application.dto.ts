@@ -1,29 +1,19 @@
-import {
-	IsBoolean,
-	IsDateString,
-	IsEmail,
-	IsEnum,
-	IsInt,
-	IsNumber,
-	IsString,
-	Length,
-	Matches,
-	Max,
-	Min,
-} from 'class-validator'
+import { IsBoolean, IsEmail, IsEnum, IsInt, IsNumber, IsString, Matches, Max, Min } from 'class-validator'
+
+import { IsBirthDate } from '@/application/validators/is-birth-date.decorator'
+import { IsCPF } from '@/application/validators/is-cpf.decorator'
+import { IsFullName } from '@/application/validators/is-full-name.decorator'
 
 import { CourseKind } from '~/prisma/generated/client'
 
 export class CreateApplicationDto {
-	@IsString({ message: 'Nome completo é obrigatório' })
-	@Length(3, 120, { message: 'Nome completo deve ter entre 3 e 120 caracteres' })
+	@IsFullName({ message: 'Nome completo inválido' })
 	fullName!: string
 
-	@IsString({ message: 'CPF é obrigatório' })
-	@Matches(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, { message: 'Formato de CPF inválido (xxx.xxx.xxx-xx)' })
+	@IsCPF({ message: 'CPF inválido' })
 	cpf!: string
 
-	@IsDateString({}, { message: 'Data inválida' })
+	@IsBirthDate(16, { message: 'Data de nascimento inválida' })
 	birthDate!: string
 
 	@IsEmail({}, { message: 'E-mail inválido' })

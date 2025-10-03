@@ -86,7 +86,7 @@
               ["@/config", "@/config/**"],
               ["@/prisma", "@/prisma/**"],
               ["@/**/*.controller", "@/**/*.module", "@/**/*.service"],
-              ["@/*/dto/**", "@/*/entities/**", "@/*/mappers/**", "@/*/repositories/**"],
+              ["@/*/dto/**", "@/*/entities/**", "@/*/mappers/**", "@/*/repositories/**", "@/*/validators/**"],
               ":BLANK_LINE:",
               ":PATH:"
             ]
