@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Application {
+  id                     String     @id @default(uuid())
+  fullName               String
+  cpf                    String     @unique
+  birthDate              DateTime   @db.Date
+  email                  String     @unique
+  phone                  String
+  courseKind             CourseKind
+  instalmentValue        Decimal    @db.Money()
+  instalments            Int
+  finalPrice             Decimal    @db.Money()
+  schoolCompletion       String
+  consentTerms           Boolean
+  phoneNotificationOptIn Boolean?   @default(false)
+  createdAt              DateTime   @default(now())
+}
+
+enum CourseKind {
+  ON_CAMPUS
+  ONLINE
+}
