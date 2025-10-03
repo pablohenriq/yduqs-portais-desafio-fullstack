@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", "!node_modules", "!.next", "!dist", "!build", "!**/prisma/generated", "!.prisma"]
+    "includes": ["**", "!node_modules", "!.next", "!dist", "!build", "!**/src/generated/prisma", "!.prisma"]
   },
   "formatter": {
     "enabled": true,
