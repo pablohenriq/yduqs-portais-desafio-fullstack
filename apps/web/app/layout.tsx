@@ -1,14 +1,18 @@
 import type { Metadata } from 'next'
 import { Inter, Montserrat } from 'next/font/google'
 
+import CssBaseline from '@mui/material/CssBaseline'
+import { ThemeProvider } from '@mui/material/styles'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter'
 
-const geistSans = Inter({
+import theme from '@/lib/theme'
+
+const inter = Inter({
 	variable: '--font-inter',
 	subsets: ['latin'],
 })
 
-const geistMono = Montserrat({
+const montserrat = Montserrat({
 	variable: '--font-montserrat',
 	subsets: ['latin'],
 })
@@ -25,8 +29,13 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt-BR">
-			<body className={`${geistSans.variable} ${geistMono.variable}`}>
-				<AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+			<body className={`${inter.variable} ${montserrat.variable}`}>
+				<AppRouterCacheProvider>
+					<ThemeProvider theme={theme}>
+						<CssBaseline />
+						{children}
+					</ThemeProvider>
+				</AppRouterCacheProvider>
 			</body>
 		</html>
 	)
