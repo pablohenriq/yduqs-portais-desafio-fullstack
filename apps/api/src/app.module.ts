@@ -4,6 +4,7 @@ import { LoggerModule } from 'nestjs-pino'
 
 import appConfiguration from '@/config/app.config'
 import { pinoConfig } from '@/config/pino.config'
+import { PrismaService } from '@/prisma/prisma.service'
 import { AppController } from '@/app.controller'
 import { AppService } from '@/app.service'
 
@@ -15,7 +16,6 @@ import { AppService } from '@/app.service'
 			useFactory: (config: ConfigService) => pinoConfig(config),
 		}),
 	],
-	controllers: [AppController],
-	providers: [AppService],
+	providers: [PrismaService],
 })
 export class AppModule {}
