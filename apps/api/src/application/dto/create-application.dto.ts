@@ -1,3 +1,5 @@
+import { i18nValidationMessage } from 'nestjs-i18n'
+
 import { IsBoolean, IsEmail, IsEnum, IsInt, IsNumber, IsString, Matches, Max, Min } from 'class-validator'
 
 import { IsBirthDate } from '@/application/validators/is-birth-date.decorator'
@@ -7,40 +9,40 @@ import { IsFullName } from '@/application/validators/is-full-name.decorator'
 import { CourseKind } from '~/prisma/generated/client'
 
 export class CreateApplicationDto {
-	@IsFullName({ message: 'Nome completo inválido' })
+	@IsFullName({ message: i18nValidationMessage('validation.fullName') })
 	fullName!: string
 
-	@IsCPF({ message: 'CPF inválido' })
+	@IsCPF({ message: i18nValidationMessage('validation.cpf') })
 	cpf!: string
 
-	@IsBirthDate(16, { message: 'Data de nascimento inválida' })
+	@IsBirthDate(16, { message: i18nValidationMessage('validation.birthDate') })
 	birthDate!: string
 
-	@IsEmail({}, { message: 'E-mail inválido' })
+	@IsEmail({}, { message: i18nValidationMessage('validation.email') })
 	email!: string
 
-	@IsString({ message: 'Telefone é obrigatório' })
-	@Matches(/^\(\d{2}\) \d{4,5}-\d{4}$/, { message: 'Telefone inválido (xx) xxxxx-xxxx' })
+	@IsString({ message: i18nValidationMessage('validation.required') })
+	@Matches(/^\(\d{2}\) \d{4,5}-\d{4}$/, { message: i18nValidationMessage('validation.phone') })
 	phone!: string
 
-	@IsEnum(CourseKind, { message: 'O tipo de curso deve ser ON_CAMPUS ou ONLINE' })
+	@IsEnum(CourseKind, { message: i18nValidationMessage('validation.courseKind') })
 	courseKind!: CourseKind
 
-	@IsInt({ message: 'O número de parcelas deve ser um inteiro entre 1 e 18' })
-	@Min(1, { message: 'Pelo menos 1 parcela' })
-	@Max(18, { message: 'Máximo 18 parcelas' })
-	instalments!: number
-
-	@IsNumber({ maxDecimalPlaces: 2 }, { message: 'O valor da parcela deve ser um valor monetário (máximo 2 decimais)' })
-	@Min(0.01, { message: 'O valor da parcela deve ser maior que zero' })
+	@IsNumber({ maxDecimalPlaces: 2 }, { message: i18nValidationMessage('validation.instalmentValue') })
+	@Min(0.01, { message: i18nValidationMessage('validation.instalmentValueMin') })
 	instalmentValue!: number
 
-	@IsString({ message: 'Ano de conclusão do ensino é obrigatório' })
+	@IsInt({ message: i18nValidationMessage('validation.instalments') })
+	@Min(1, { message: i18nValidationMessage('validation.instalmentsMin') })
+	@Max(18, { message: i18nValidationMessage('validation.instalmentsMax') })
+	instalments!: number
+
+	@IsString({ message: i18nValidationMessage('validation.required') })
 	schoolCompletion!: string
 
-	@IsBoolean({ message: 'Você deve aceitar os termos' })
+	@IsBoolean({ message: i18nValidationMessage('validation.consent') })
 	consentTerms!: boolean
 
-	@IsBoolean({ message: 'Opt-in de notificações deve ser true ou false' })
+	@IsBoolean({ message: i18nValidationMessage('validation.optIn') })
 	phoneNotificationOptIn?: boolean
 }

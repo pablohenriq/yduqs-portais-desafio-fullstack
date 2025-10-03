@@ -1,0 +1,16 @@
+{
+  "fullName": "Nome completo deve conter nome e sobrenome (somente letras, espaços, hífens ou apóstrofos)",
+  "cpf": "Número de CPF inválido",
+  "date": "Data inválida",
+  "email": "E-mail inválido",
+  "phone": "Telefone inválido (xx) xxxxx-xxxx",
+  "courseKind": "O tipo de curso deve ser ON_CAMPUS ou ONLINE",
+  "instalments": "O número de parcelas deve ser um inteiro entre 1 e 18",
+  "instalmentsMin": "Pelo menos 1 parcela",
+  "instalmentsMax": "Máximo 18 parcelas",
+  "instalmentValue": "O valor da parcela deve ser um valor positivo",
+  "instalmentValueMin": "O valor da parcela deve ser maior que zero",
+  "consent": "Você deve aceitar os termos",
+  "optIn": "Opt-in deve ser verdadeiro ou falso",
+  "required": "{property} é obrigatório"
+}
