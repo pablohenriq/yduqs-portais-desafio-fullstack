@@ -7,7 +7,11 @@ import { apiReference } from '@scalar/nestjs-api-reference'
 
 import { AppModule } from '@/app.module'
 
+import { otelSDK } from '@/otel'
+
 async function bootstrap() {
+	otelSDK.start()
+
 	const app = await NestFactory.create(AppModule)
 
 	app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }))
