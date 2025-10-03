@@ -1,42 +1,46 @@
-import type { INestApplication } from '@nestjs/common'
-import { Test, type TestingModule } from '@nestjs/testing'
+import { INestApplication } from '@nestjs/common'
+import { Test, TestingModule } from '@nestjs/testing'
 
 import request from 'supertest'
-import type { App } from 'supertest/types'
 
 import { PrismaService } from '@/prisma/prisma.service'
-import { AppModule } from '@/app.module'
+import { ApplicationModule } from '@/application/application.module'
 
-describe('Application API (e2e)', () => {
-	let app: INestApplication<App>
+describe('ApplicationController (e2e)', () => {
+	let app: INestApplication
 	let prisma: PrismaService
 
-	beforeEach(async () => {
+	beforeAll(async () => {
 		const moduleFixture: TestingModule = await Test.createTestingModule({
-			imports: [AppModule],
+			imports: [ApplicationModule],
 		}).compile()
 
 		app = moduleFixture.createNestApplication()
 		prisma = moduleFixture.get<PrismaService>(PrismaService)
 		await app.init()
+	})
 
-		// Clean the database before each test
+	afterAll(async () => {
+		await app.close()
+	})
+
+	beforeEach(async () => {
 		await prisma.application.deleteMany()
 	})
 
-	it('/applications (POST) - should create an application successfully', () => {
+	it('should create an application successfully', () => {
 		const dto = {
-			fullName: 'Jane Doe',
-			cpf: '400.657.150-04',
-			birthDate: '1990-01-01',
-			email: 'jane@example.com',
-			phone: '(86) 99999-9999',
-			courseKind: 'ON_CAMPUS',
-			instalments: 12,
-			instalmentValue: 150.5,
-			schoolCompletion: '2010',
+			fullName: 'Maria Silva',
+			cpf: '987.654.321-00',
+			birthDate: '1995-05-15',
+			email: 'maria@example.com',
+			phone: '(86) 88888-8888',
+			courseKind: 'ONLINE',
+			instalments: 6,
+			instalmentValue: 200.0,
+			schoolCompletion: '2015',
 			consentTerms: true,
-			phoneNotificationOptIn: false,
+			phoneNotificationOptIn: true,
 		}
 
 		return request(app.getHttpServer())
@@ -50,7 +54,7 @@ describe('Application API (e2e)', () => {
 			})
 	})
 
-	it('/applications (POST) - should return 500 for invalid data causing Prisma errors', () => {
+	it('should return 500 for invalid data', () => {
 		const invalidDto = {
 			fullName: 'Jo',
 			cpf: 'invalid-cpf',

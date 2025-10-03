@@ -14,7 +14,7 @@ export class CreateApplicationDto {
 	@IsFullName({ message: i18nValidationMessage('validation.fullName') })
 	fullName!: string
 
-	@ApiProperty({ description: 'Número do CPF', example: '123.456.789-00' })
+	@ApiProperty({ description: 'Número do CPF', example: '400.657.150-04' })
 	@IsCPF({ message: i18nValidationMessage('validation.cpf') })
 	cpf!: string
 

@@ -21,7 +21,7 @@ export class IsFullNameConstraint implements ValidatorConstraintInterface {
 	}
 
 	defaultMessage() {
-		return 'Nome completo deve conter nome e sobrenome (somente letras, espaços, hifens ou apóstrofos)'
+		return 'Nome completo deve conter nome e sobrenome (somente letras, espaços, hífens ou apóstrofos)'
 	}
 }
 
