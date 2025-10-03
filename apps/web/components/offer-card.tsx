@@ -10,6 +10,7 @@ type OfferCardProps = Readonly<{
 	location: string
 	address: string
 	isSelected?: boolean
+	onAdvanceClick?: () => void
 }>
 
 export const OfferCard = ({
@@ -22,6 +23,7 @@ export const OfferCard = ({
 	location,
 	address,
 	isSelected = false,
+	onAdvanceClick,
 }: OfferCardProps) => {
 	return (
 		<Box
@@ -148,6 +150,7 @@ export const OfferCard = ({
 					variant="contained"
 					color="secondary"
 					fullWidth
+					onClick={onAdvanceClick}
 					sx={{
 						textTransform: 'none',
 						fontWeight: 500,

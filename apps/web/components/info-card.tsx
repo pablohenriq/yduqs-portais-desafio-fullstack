@@ -6,9 +6,10 @@ type InfoCardProps = Readonly<{
 	mode: string
 	location: string
 	address: string
+	onAdvanceClick?: () => void
 }>
 
-export const InfoCard = ({ mode, location, address }: InfoCardProps) => {
+export const InfoCard = ({ mode, location, address, onAdvanceClick }: InfoCardProps) => {
 	return (
 		<Box
 			sx={{
@@ -54,6 +55,7 @@ export const InfoCard = ({ mode, location, address }: InfoCardProps) => {
 				<Box
 					sx={{
 						display: 'flex',
+						flexDirection: 'column',
 						gap: 1,
 						pb: 1,
 					}}
@@ -74,6 +76,7 @@ export const InfoCard = ({ mode, location, address }: InfoCardProps) => {
 					variant="contained"
 					color="secondary"
 					fullWidth
+					onClick={onAdvanceClick}
 					sx={{
 						textTransform: 'none',
 						fontWeight: 500,

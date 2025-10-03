@@ -1,15 +1,22 @@
 'use client'
 
+import { useState } from 'react'
+
 import { Box, Container, ThemeProvider, Typography } from '@mui/material'
 
+import { EnrollmentDrawer } from '@/components/enrollment-drawer'
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { InfoCard } from '@/components/info-card'
+import { InstallmentDrawer } from '@/components/instalment-drawer'
 import { OfferCard } from '@/components/offer-card'
 import { PageHeader } from '@/components/page-header'
 import theme from '@/lib/theme'
 
 export default function Home() {
+	const [installmentDrawerOpen, setInstallmentDrawerOpen] = useState(false)
+	const [enrollmentDrawerOpen, setEnrollmentDrawerOpen] = useState(false)
+
 	return (
 		<ThemeProvider theme={theme}>
 			<Box
@@ -62,12 +69,14 @@ export default function Home() {
 							location="CAMPINAS - VILA INDUSTRIAL"
 							address="RUA DR. SALES DE OLIVEIRA, Nº 1661 - VILA INDUSTRIAL - CAMP..."
 							isSelected
+							onAdvanceClick={() => setInstallmentDrawerOpen(true)}
 						/>
 
 						<InfoCard
 							mode="Digital (EaD)"
 							location="BARRA DA TIJUCA - TOM JOB..."
 							address="AV. DAS AMÉRICAS, 4.200, BLOCO 11 - BARRA DA TIJUCA..."
+							onAdvanceClick={() => setEnrollmentDrawerOpen(true)}
 						/>
 					</Box>
 				</Container>
@@ -75,6 +84,10 @@ export default function Home() {
 				<Box sx={{ mt: 'auto' }}>
 					<Footer />
 				</Box>
+
+				<InstallmentDrawer open={installmentDrawerOpen} onClose={() => setInstallmentDrawerOpen(false)} />
+
+				<EnrollmentDrawer open={enrollmentDrawerOpen} onClose={() => setEnrollmentDrawerOpen(false)} />
 			</Box>
 		</ThemeProvider>
 	)
