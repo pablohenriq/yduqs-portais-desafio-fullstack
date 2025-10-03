@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", "!node_modules", "!.next", "!dist", "!build", "!**/src/generated/prisma", "!.prisma"]
+    "includes": ["**", "!node_modules", "!.next", "!dist", "!build", "!**/prisma/generated/client", "!.prisma"]
   },
   "formatter": {
     "enabled": true,
@@ -85,6 +85,7 @@
               ["@/lib", "@/lib/**"],
               ["@/config", "@/config/**"],
               ["@/prisma", "@/prisma/**"],
+              ["@/**/*.controller", "@/**/*.module", "@/**/*.service"],
               ["@/*/dto/**", "@/*/entities/**", "@/*/repositories/**"],
               ":BLANK_LINE:",
               ":PATH:"
